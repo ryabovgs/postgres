@@ -2,22 +2,28 @@ package com.example.postgre.service;
 
 import org.springframework.stereotype.Service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Service
 public class ConnectionService {
 
-    private final String url = "jdbc:postgresql://localhost/dvdrental";
-    private final String user = "postgres";
-    private final String password = "<add your password>";
+    private final String url = "jdbc:postgresql://localhost:15432/compose-postgres";
+    private final String user = "compose-postgres";
+    private final String password = "compose-postgres";
 
     public Connection connect() {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to the PostgreSQL server successfully.");
+//            Statement statement = connection.createStatement();
+            Statement statement=connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+
+            ResultSet rs = statement.executeQuery("select * from customer");
+//            System.out.println(result+" records affected");
+            rs.absolute(3);
+            System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3));
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
