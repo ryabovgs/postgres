@@ -1,0 +1,24 @@
+#- SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+#- SPRING_DATASOURCE_USERNAME=compose-postgres
+#- SPRING_DATASOURCE_PASSWORD=compose-postgres
+#- SPRING_JPA_HIBERNATE_DDL_AUTO=update
+spring:
+  cloud:
+    config:
+      enabled: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: false
+#      image: 'postgres:13.1-alpine'
+  datasource:
+#    url: jdbc:tc:postgresql:13.4-alpine3.14:///customer
+#    url: jdbc:postgresql://db:5432/compose-postgres
+#    url: jdbc:postgresql://db:5432/customer
+    url: jdbc:postgresql://localhost:15432/compose-postgres
+    username: compose-postgres
+    password: compose-postgres
+  liquibase:
+    change-log: classpath:db/changelog/changelog-cumulative.xml
+#  liquibase:
+#    enabled: true
+#    change-log: classpath:changelog/master.xml
