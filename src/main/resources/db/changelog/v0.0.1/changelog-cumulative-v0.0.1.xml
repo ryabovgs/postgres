@@ -8,5 +8,11 @@
     <changeSet id="orders" author="ryabovgs@gmail.com">
         <sqlFile path="sql/customer.sql" relativeToChangelogFile="true"/>
     </changeSet>
+    <changeSet id="customer_add_city_id" author="ryabovgs@gmail.com">
+        <sqlFile path="sql/customer_add_city_id.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="customer_first_name_index" author="ryabovgs@gmail.com">
+        <sqlFile path="sql/customer_first_name_index.sql" relativeToChangelogFile="true"/>
+    </changeSet>
 
 </databaseChangeLog>
