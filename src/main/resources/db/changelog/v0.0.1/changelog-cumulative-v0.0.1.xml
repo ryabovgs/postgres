@@ -14,5 +14,8 @@
     <changeSet id="customer_first_name_index" author="ryabovgs@gmail.com">
         <sqlFile path="sql/customer_first_name_index.sql" relativeToChangelogFile="true"/>
     </changeSet>
+    <changeSet id="role" author="ryabovgs@gmail.com">
+        <sqlFile path="sql/role.sql" relativeToChangelogFile="true"/>
+    </changeSet>
 
 </databaseChangeLog>
