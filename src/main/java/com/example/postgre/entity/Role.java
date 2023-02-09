@@ -2,23 +2,22 @@ package com.example.postgre.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import javax.persistence.*;
-
-@Entity
+//@Entity
 @Getter
 @Setter
 @Table(name = "role")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_seq")
-    @SequenceGenerator(name = "role_seq")
-    @Column(name = "id", nullable = false)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_seq")
+//    @SequenceGenerator(name = "role_seq")
+    @Column("id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "customer_id")
     private Customer customer;
 }

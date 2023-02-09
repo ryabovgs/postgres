@@ -9,10 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-
-import java.util.List;
+import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
 @SpringBootApplication
+@EnableR2dbcRepositories("com.example.postgre.repository")
 public class PostgresApplication {
 	private final Logger logger = LoggerFactory.getLogger(PostgresApplication.class);
 
@@ -32,14 +32,19 @@ public class PostgresApplication {
 
 	private void createCustomer() {
 		Customer newCustomer = new Customer();
-		newCustomer.setFirstName("John");
-		newCustomer.setLastName("Doe");
+		newCustomer.setFirstName("John2");
+		newCustomer.setLastName("Doe2");
 		logger.info("Saving new customer...");
-		this.repository.save(newCustomer);
+		this.repository.save(newCustomer).doOnNext(Customer::toString)
+				.subscribe(System.out::println);
 	}
 
 	private void queryAllCustomers() {
-		List<Customer> allCustomers = this.repository.findAll();
-		logger.info("Number of customers: " + allCustomers.size());
+		var allCustomers = this.repository.findAll()
+				.doOnNext(Customer::toString)
+				.collectList()
+				.subscribe(customers -> {
+					logger.info("Number of customers: " + customers.size());
+				});
 	}
 }
