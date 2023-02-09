@@ -11,5 +11,13 @@ public interface CustomerMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id")
-    CustomerDto map(Customer customer);
+    @Mapping(target = "firstName")
+    @Mapping(target = "lastName")
+    CustomerDto mapToDto(Customer customer);
+
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id")
+    @Mapping(target = "firstName")
+    @Mapping(target = "lastName")
+    Customer mapFromDto(CustomerDto customerDto);
 }

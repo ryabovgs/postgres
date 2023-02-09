@@ -15,33 +15,19 @@ import reactor.core.publisher.Flux;
 public class CustomerServiceImpl implements CustomerService {
 
     CustomerRepository customerRepository;
-//    EntityManagerFactory entityManagerFactory;
     CustomerMapper customerMapper;
 
 
     @Override
     public Flux<CustomerDto> getAll() {
         return customerRepository.findAll()
-                .map(customerMapper::map);
+                .map(customerMapper::mapToDto);
     }
-
-//    @Override
-//    public Mono<List<CustomerDto>> getAll() {
-//        return customerRepository.findAll()
-//                .map(customerMapper::map)
-//                .collectList();
-//    }
 
     @Override
-    public CustomerDto getByIdWithPlainQuery(Long id) {
-        return null;
-//        Query jpqlQuery = getEntityManager().createQuery("SELECT c FROM Customer c WHERE c.id=:id");
-//        jpqlQuery.setParameter("id", id);
-//        var customer = (Customer) jpqlQuery.getSingleResult();
-//        return customerMapper.map(customer);
+    public void save(String firstName, String lastName) {
+        var customerDto = CustomerDto.builder().firstName(firstName).lastName(lastName).build();
+        customerRepository.save(customerMapper.mapFromDto(customerDto))
+                .subscribe(System.out::println);
     }
-
-//    private EntityManager getEntityManager() {
-//        return entityManagerFactory.createEntityManager();
-//    }
 }
