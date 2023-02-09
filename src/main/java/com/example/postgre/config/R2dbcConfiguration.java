@@ -11,6 +11,8 @@ import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
 @Configuration
 public class R2dbcConfiguration extends AbstractR2dbcConfiguration {
 
+    //TODO move values to @ConfigurationProperties
+
     @Value("${database.name}")
     private String database;
 

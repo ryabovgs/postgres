@@ -1,4 +1,4 @@
-package com.example.postgre.service;
+package com.example.postgre.service.email;
 
 public interface EmailService {
 

@@ -14,3 +14,7 @@ spring:
       password: ${database.password}
   liquibase:
     change-log: classpath:db/changelog/changelog-cumulative.xml
+report:
+  last-name: Galt
+  recipient: 'ryabovgs@gmail.com'
+  subject: Report

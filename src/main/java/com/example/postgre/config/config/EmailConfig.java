@@ -10,6 +10,7 @@ import java.util.Properties;
 @Configuration
 public class EmailConfig {
 
+    //TODO move values to @ConfigurationProperties
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -17,7 +18,7 @@ public class EmailConfig {
         mailSender.setPort(587);
 
         mailSender.setUsername("ryabovgs@gmail.com");
-        mailSender.setPassword("mysecurepassword");
+        mailSender.setPassword("mysecretpassword");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");

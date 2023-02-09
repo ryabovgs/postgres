@@ -1,7 +1,7 @@
 package com.example.postgre.controller;
 
 import com.example.postgre.dto.CustomerDto;
-import com.example.postgre.service.CustomerService;
+import com.example.postgre.service.customer.CustomerService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
