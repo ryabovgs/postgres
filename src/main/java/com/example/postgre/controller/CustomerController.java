@@ -1,7 +1,6 @@
 package com.example.postgre.controller;
 
 import com.example.postgre.dto.CustomerDto;
-import com.example.postgre.entity.Customer;
 import com.example.postgre.service.CustomerService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -24,7 +22,7 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping
-    public List<CustomerDto> getAll(){
+    public Flux<CustomerDto> getAll(){
         return customerService.getAll();
     }
 

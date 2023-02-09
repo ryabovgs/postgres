@@ -2,40 +2,33 @@ package com.example.postgre.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Entity
+//@Entity
 @Getter
 @Setter
+@ToString
 @Table(name = "customer")
 public final class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "first_name", nullable = false)
+    @Column("first_name")
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column("last_name")
     private String lastName;
 
-    @OneToMany(mappedBy = "customer", orphanRemoval = true, fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SUBSELECT)
+//    @OneToMany(mappedBy = "customer", orphanRemoval = true, fetch = FetchType.LAZY)
+//    @Fetch(FetchMode.SUBSELECT)
     private Set<Role> roles = new LinkedHashSet<>();
-
-    public Customer() {
-        super();
-    }
-
-    @Override
-    public String toString() {
-        return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
-    }
 
 }
