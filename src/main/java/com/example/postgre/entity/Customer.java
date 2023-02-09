@@ -7,10 +7,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-//@Entity
 @Getter
 @Setter
 @ToString
@@ -18,7 +14,6 @@ import java.util.Set;
 public final class Customer {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column("first_name")
@@ -26,9 +21,5 @@ public final class Customer {
 
     @Column("last_name")
     private String lastName;
-
-//    @OneToMany(mappedBy = "customer", orphanRemoval = true, fetch = FetchType.LAZY)
-//    @Fetch(FetchMode.SUBSELECT)
-    private Set<Role> roles = new LinkedHashSet<>();
 
 }

@@ -11,8 +11,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
-import java.util.List;
-
 @SpringBootApplication
 @EnableR2dbcRepositories("com.example.postgre.repository")
 public class PostgresApplication {
@@ -34,10 +32,11 @@ public class PostgresApplication {
 
 	private void createCustomer() {
 		Customer newCustomer = new Customer();
-		newCustomer.setFirstName("John");
-		newCustomer.setLastName("Doe");
+		newCustomer.setFirstName("John2");
+		newCustomer.setLastName("Doe2");
 		logger.info("Saving new customer...");
-		this.repository.save(newCustomer);
+		this.repository.save(newCustomer).doOnNext(Customer::toString)
+				.subscribe(System.out::println);
 	}
 
 	private void queryAllCustomers() {
