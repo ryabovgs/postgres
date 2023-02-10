@@ -1,6 +1,7 @@
 package com.example.postgre.service.customer;
 
 import com.example.postgre.dto.CustomerDto;
+import com.example.postgre.entity.Customer;
 import com.example.postgre.mapper.CustomerMapper;
 import com.example.postgre.repository.CustomerRepository;
 import lombok.AccessLevel;
@@ -9,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Schedulers;
+import reactor.core.publisher.Mono;
 
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
@@ -28,11 +29,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void save(String firstName, String lastName) {
+    public Mono<Customer> add(String firstName, String lastName) {
         var customerDto = CustomerDto.builder().firstName(firstName).lastName(lastName).build();
-        customerRepository.save(customerMapper.mapFromDto(customerDto))
-                .subscribeOn(Schedulers.boundedElastic())
-                .subscribe(customer -> {
-                });
+        return customerRepository.save(customerMapper.mapFromDto(customerDto));
     }
 }

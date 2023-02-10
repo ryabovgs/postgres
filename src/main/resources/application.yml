@@ -9,11 +9,18 @@ spring:
     config:
       enabled: false
   r2dbc:
-      url: 'r2dbc:postgresql:////${database.host}:${database.port}/${database.name}'
-      username: ${database.username}
-      password: ${database.password}
+    url: 'r2dbc:postgresql:////${database.host}:${database.port}/${database.name}'
+    username: ${database.username}
+    password: ${database.password}
   liquibase:
+    enabled: true
     change-log: classpath:db/changelog/changelog-cumulative.xml
+    url: jdbc:postgresql://localhost:15432/compose-postgres
+    user: compose-postgres
+#  datasource:
+#    url: jdbc:postgresql://localhost:15432/compose-postgres
+#    username: compose-postgres
+#    password: compose-postgres
 report:
   last-name: Galt
   recipient: 'ryabovgs@gmail.com'

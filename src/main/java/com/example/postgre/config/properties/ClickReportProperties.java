@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties("report")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CustomerReportProperties {
+public class ClickReportProperties {
     String lastName;
     String recipient;
     String subject;
